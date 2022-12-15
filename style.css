@@ -107,6 +107,25 @@ body{
     flex:1;
     border-top: 4px solid #5e63a1;
     box-shadow: 0px -1px 2px #5e63a1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px 0px 10px 0px;
+}
+.restart{
+    color: #5e63a1;
+    font-size: 170%;
+    text-decoration: none;
+    border-bottom: 1px solid #5e63a1;
+    transition: border-bottom 0.4s ease-in-out,
+                font-size 0.7s ease-in-out;
+
+}
+.restart:active{
+    border-bottom: 5px solid #5e63a1;
+}
+.restart:hover{
+    font-size: 250%;
 }
 .hidden{
     visibility: hidden;
