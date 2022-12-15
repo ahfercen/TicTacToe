@@ -59,17 +59,30 @@ body{
     grid-template-columns: 15vw 15vw 15vw;
     grid-template-rows: 15vw 15vw 15vw;
     margin: 25px 50px 25px 50px;
-    background-color:#5EA17B;
+    background-color:#55FACE;
     gap: 5px;
 }
 .cell{
-    padding: 5px;
-    background-color: white;
-    transition: all 0.7s ease-in-out;
+    display: flex;
 }
-.cell :hover{
-    box-shadow: 5px 5px 5px black;
-    background-color: #A19C5E;
+
+.cell-content{
+    margin: 0;
+    background-color: white;
+    flex: 1;
+    transition: border-radius 0.7s ease-in-out, 
+                height 0.7s ease-in-out,
+                width 0.7s ease-in-out;
+}
+.cell-content:hover{
+    border-radius: 100px;
+    width: 90%;
+    height: 90%;
+}
+.cell-content:active{
+    border-radius: 100px;
+    width: 70%;
+    height: 70%;
 }
 
 .controls{
