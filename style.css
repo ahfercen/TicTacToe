@@ -61,13 +61,21 @@ body{
 .board{
     flex: 1;
     display: grid;
-    grid-template-columns: 15vw 15vw 15vw;
-    grid-template-rows: 15vw 15vw 15vw;
+    grid-template-columns: repeat(3, 10vw);
+    grid-template-rows: repeat(3, 10vw);
     margin: 25px 50px 25px 50px;
     background-color:#55FACE;
     gap: 5px;
     transition: visibility 1s ease-in-out,
-                opacity 1.0s ease-in-out;
+                opacity 0.5s ease-in-out;
+}
+.win{
+    position: fixed;
+    color: #5e63a1;
+    font-size: 250%;
+    transition: opacity 1.7s ease-in-out,
+        visibility 2.0s ease-in-out,
+        font-size 1.0s ease-in-out;
 }
 .cell{
     display: flex;
@@ -135,8 +143,10 @@ body{
     font-size: 250%;
 }
 .hidden{
+    font-size: 100%;
     opacity: 0%;
     visibility: hidden;
     transition: opacity 1.0s ease-in-out,
-                visibility 1.0s ease-in-out;
+                visibility 1.0s ease-in-out,
+                font-size 12.0s ease-in-out;
 }
