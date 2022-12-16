@@ -65,7 +65,6 @@ const board = (() => {
         return false;
     }
     const checkWinner = () =>{
-        console.log("Checking winner");
         if(_checkRow() || _checkCol() || _checkDiag()){
             return true;
         }
@@ -93,6 +92,9 @@ const gameState = (() =>{
     const _player2 = Player("O");
     let _currentPlayer = _player1;
 
+    const _board = document.getElementById("board");
+    const _winScreen = document.getElementById("win");
+
     const _instruction = document.getElementById("instruction");
     _instruction.textContent = "Player 1 starts with X"
     _instruction.classList.remove("hidden");
@@ -101,8 +103,12 @@ const gameState = (() =>{
     _restart.onclick = (() =>{
         board.resetBoard();
         _currentPlayer = _player1;
-        _instruction.textContent = `Player 1 with symbol ${_currentPlayer.getSign()}`
+        _instruction.textContent = `Player 1 with symbol ${_currentPlayer.getSign()}`;
+        _instruction.classList.remove("hidden");
+        _board.classList.remove("hidden");
+        _winScreen.classList.add("hidden");
         _active = true;
+
     });
     const _cellClicked = e => {
         if(!_active){
@@ -111,8 +117,10 @@ const gameState = (() =>{
         if (board.setCell(_currentPlayer, e.target.id)){
             if(board.checkWinner()){
                 _active = false;
+                _win();
+            }else{
+                _nextTurn();
             }
-            _nextTurn();
         }
     }
     Array.from(board.getCells()).forEach(element => {
@@ -130,5 +138,10 @@ const gameState = (() =>{
             _currentPlayer = _player1;
             _instruction.textContent = `Player 1 with symbol ${_currentPlayer.getSign()}`
         }
+    }
+    const _win = () =>{
+        _board.classList.add("hidden");
+        _winScreen.classList.remove("hidden");
+        _instruction.classList.add("hidden");
     }
 })();
