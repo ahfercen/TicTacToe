@@ -101,14 +101,7 @@ const gameState = (() =>{
 
     const _restart = document.getElementById("reset");
     _restart.onclick = (() =>{
-        board.resetBoard();
-        _currentPlayer = _player1;
-        _instruction.textContent = `Player 1 with symbol ${_currentPlayer.getSign()}`;
-        _instruction.classList.remove("hidden");
-        _board.classList.remove("hidden");
-        _winScreen.classList.add("hidden");
-        _active = true;
-
+        _reset();
     });
     const _cellClicked = e => {
         if(!_active){
@@ -127,7 +120,9 @@ const gameState = (() =>{
         element.addEventListener("click",_cellClicked);
     
     });
-
+    const _sleep = (ms) => {
+        return new Promise(resolve => setTimeout(resolve, ms));
+    }
 
     const _nextTurn = () =>{
         if(_currentPlayer == _player1){
@@ -148,6 +143,18 @@ const gameState = (() =>{
         _board.classList.add("hidden");
         _winScreen.classList.remove("hidden");
         _instruction.classList.add("hidden");
-        
+        (async () => {
+            await _sleep(4000);
+            _reset();
+        })();        
+    }
+    const _reset = () =>{
+        board.resetBoard();
+        _currentPlayer = _player1;
+        _instruction.textContent = `Player 1 with symbol ${_currentPlayer.getSign()}`;
+        _instruction.classList.remove("hidden");
+        _board.classList.remove("hidden");
+        _winScreen.classList.add("hidden");
+        _active = true;
     }
 })();
