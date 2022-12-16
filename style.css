@@ -66,6 +66,8 @@ body{
     margin: 25px 50px 25px 50px;
     background-color:#55FACE;
     gap: 5px;
+    transition: visibility 1s ease-in-out,
+                opacity 1.0s ease-in-out;
 }
 .cell{
     display: flex;
@@ -133,5 +135,8 @@ body{
     font-size: 250%;
 }
 .hidden{
+    opacity: 0%;
     visibility: hidden;
+    transition: opacity 1.0s ease-in-out,
+                visibility 1.0s ease-in-out;
 }
