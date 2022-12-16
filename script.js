@@ -88,7 +88,7 @@ const Player = (sign) =>{
     };
 };
 const gameState = (() =>{
-    let active = true;
+    let _active = true;
     const _player1 = Player("X");
     const _player2 = Player("O");
     let _currentPlayer = _player1;
@@ -102,13 +102,16 @@ const gameState = (() =>{
         board.resetBoard();
         _currentPlayer = _player1;
         _instruction.textContent = `Player 1 with symbol ${_currentPlayer.getSign()}`
+        _active = true;
     });
     const _cellClicked = e => {
-        if(!active){
-            alert("Game over");
+        if(!_active){
+           return;
         }
         if (board.setCell(_currentPlayer, e.target.id)){
-            board.checkWinner();
+            if(board.checkWinner()){
+                _active = false;
+            }
             _nextTurn();
         }
     }
