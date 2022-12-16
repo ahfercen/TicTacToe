@@ -38,9 +38,27 @@ const board = (() => {
         }
         return false;
     }
+    const _checkCol = () =>{
+        const c1 = [_grid[0], _grid[3] , _grid[6]];
+        const c2 = [_grid[1], _grid[4] , _grid[7]];
+        const c3 = [_grid[2], _grid[5] , _grid[8]];
+        if(c1.every(x => x == "X") || c1.every(x => x == "O")){
+            return true;
+        }
+        if(c2.every(x => x == "X") || c2.every(x => x == "O")){
+            return true;
+        }
+        if(c3.every(x => x == "X") || c3.every(x => x == "O")){
+            return true;
+        }
+        return false;
+    }
+    const _checkDiag = () => {
+        return false;
+    }
     const checkWinner = () =>{
         console.log("Checking winner");
-        if(_checkRow()){
+        if(_checkRow() || _checkCol() || _checkDiag()){
             return true;
         }
     }
