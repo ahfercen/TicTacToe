@@ -54,6 +54,14 @@ const board = (() => {
         return false;
     }
     const _checkDiag = () => {
+        const d1 = [_grid[0], _grid[4], _grid[8]];
+        const d2 = [_grid[2], _grid[4], _grid[6]];
+        if(d1.every(x => x == "X") || d1.every(x => x == "O")){
+            return true;
+        }
+        if(d2.every(x => x == "X") || d2.every(x => x == "O")){
+            return true;
+        }
         return false;
     }
     const checkWinner = () =>{
@@ -80,6 +88,7 @@ const Player = (sign) =>{
     };
 };
 const gameState = (() =>{
+    let active = true;
     const _player1 = Player("X");
     const _player2 = Player("O");
     let _currentPlayer = _player1;
@@ -95,6 +104,9 @@ const gameState = (() =>{
         _instruction.textContent = `Player 1 with symbol ${_currentPlayer.getSign()}`
     });
     const _cellClicked = e => {
+        if(!active){
+            alert("Game over");
+        }
         if (board.setCell(_currentPlayer, e.target.id)){
             board.checkWinner();
             _nextTurn();
