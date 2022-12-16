@@ -103,7 +103,7 @@ body{
 
 }
 .cell-content:hover{
-    border-radius: 100px;
+    border-radius: 180px;
     margin: 10px;
     border: 3px solid #5e63a1;
     color: #5e63a1;
