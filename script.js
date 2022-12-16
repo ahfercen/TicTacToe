@@ -45,5 +45,7 @@ const gameState = (() =>{
     Array.from(board.getCells()).forEach(element => {
         element.addEventListener("click",_cellClicked);
     });
-    
+    const _instruction = document.getElementById("instruction");
+    _instruction.textContent = "Player 1 starts with X"
+    _instruction.classList.remove("hidden");
 })();

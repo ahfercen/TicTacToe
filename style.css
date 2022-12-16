@@ -37,6 +37,11 @@ body{
     color:#5e63a1;
     margin: 0px;
 }
+#instruction{
+    padding-top: 10px;
+    color: #5e63a1;
+    font-size: 150%;
+}
 .score{
     flex: 1;
     display: flex;
