@@ -140,8 +140,14 @@ const gameState = (() =>{
         }
     }
     const _win = () =>{
+        if (_currentPlayer == _player1){
+            _winScreen.textContent = "Player 1 has won!";
+        }else{
+            _winScreen.textContent = "Player 2 has won!";
+        }
         _board.classList.add("hidden");
         _winScreen.classList.remove("hidden");
         _instruction.classList.add("hidden");
+        
     }
 })();
