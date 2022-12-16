@@ -23,9 +23,26 @@ const board = (() => {
             cell.children[0].textContent = "";
         }
     }
+    const _checkRow = () =>{
+        const r1 =  [_grid[0], _grid[1], _grid[2]];
+        const r2 =  [_grid[3], _grid[4], _grid[5]];
+        const r3 =  [_grid[6], _grid[7], _grid[8]];
+        if(r1.every(x => x == "X") || r2.every(x => x == "O")){
+            return true;
+        }
+        if(r2.every(x => x == "X") || r2.every(x => x == "O")){
+            return true;
+        }
+        if(r3.every(x => x == "X") || r3.every(x => x == "O")){
+            return true;
+        }
+        return false;
+    }
     const checkWinner = () =>{
         console.log("Checking winner");
-        return null;
+        if(_checkRow()){
+            return true;
+        }
     }
     return {
         setCell,
@@ -61,8 +78,8 @@ const gameState = (() =>{
     });
     const _cellClicked = e => {
         if (board.setCell(_currentPlayer, e.target.id)){
-            _nextTurn();
             board.checkWinner();
+            _nextTurn();
         }
     }
     Array.from(board.getCells()).forEach(element => {
