@@ -24,6 +24,7 @@ const board = (() => {
         }
     }
     const checkWinner = () =>{
+        console.log("Checking winner");
         return null;
     }
     return {
@@ -48,31 +49,36 @@ const gameState = (() =>{
     const _player2 = Player("O");
     let _currentPlayer = _player1;
 
+    const _instruction = document.getElementById("instruction");
+    _instruction.textContent = "Player 1 starts with X"
+    _instruction.classList.remove("hidden");
+
     const _restart = document.getElementById("reset");
     _restart.onclick = (() =>{
         board.resetBoard();
         _currentPlayer = _player1;
+        _instruction.textContent = `Player 1 with symbol ${_currentPlayer.getSign()}`
     });
     const _cellClicked = e => {
         if (board.setCell(_currentPlayer, e.target.id)){
             _nextTurn();
+            board.checkWinner();
         }
     }
     Array.from(board.getCells()).forEach(element => {
         element.addEventListener("click",_cellClicked);
     
     });
-    const _instruction = document.getElementById("instruction");
-    _instruction.textContent = "Player 1 starts with X"
-    _instruction.classList.remove("hidden");
+
 
     const _nextTurn = () =>{
         if(_currentPlayer == _player1){
-            console.log("player 1 turn ended");
             _currentPlayer = _player2;
+            _instruction.textContent = `Player 2 with symbol ${_currentPlayer.getSign()}`
+
         }else{
-            console.log("player 2 turn ended");
             _currentPlayer = _player1;
+            _instruction.textContent = `Player 1 with symbol ${_currentPlayer.getSign()}`
         }
     }
 })();
